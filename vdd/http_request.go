@@ -1,4 +1,4 @@
-package vddrequest
+package vdd
 
 import (
 	"bytes"

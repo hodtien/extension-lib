@@ -1,12 +1,12 @@
-package vddrequest
+package vdd
 
 import (
 	"encoding/json"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/hodtien/extension-lib/global"
 	"github.com/hodtien/extension-lib/model"
-	"github.com/google/uuid"
 )
 
 // RetrieveData - RetrieveData
@@ -38,7 +38,6 @@ func RetrieveData(apiKey, bucketID, recordID, queryPath string) map[string]inter
 // RetrieveAllDataInBucket - RetrieveAllDataInBucket
 func RetrieveAllDataInBucket(apiKey, bucketID, queryPath string) map[string]interface{} {
 	subj := "vdd_request.RetrieveAllDataInBucket"
-
 	nReq := new(model.NATSRequest)
 	nReq.RequestID = uuid.New().String()
 	nReq.APIKey = apiKey
@@ -46,7 +45,7 @@ func RetrieveAllDataInBucket(apiKey, bucketID, queryPath string) map[string]inte
 	nReq.QueryPath = queryPath
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := global.Nc.Request(subj, payload, 30*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "RetrieveAllDataInBucket FAILED: " + err.Error()}
 	}

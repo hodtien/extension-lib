@@ -1,4 +1,4 @@
-package vdrrequest
+package vdr
 
 import (
 	"context"
