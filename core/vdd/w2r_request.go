@@ -3,10 +3,11 @@ package vdd
 import (
 	"encoding/json"
 	"time"
+	
+	"github.com/hodtien/extension-lib/transport"
+	"github.com/hodtien/extension-lib/model"
 
 	"github.com/google/uuid"
-	"github.com/hodtien/extension-lib/global"
-	"github.com/hodtien/extension-lib/model"
 )
 
 // RetrieveData - RetrieveData
@@ -21,7 +22,7 @@ func RetrieveData(apiKey, bucketID, recordID, queryPath string) map[string]inter
 	nReq.QueryPath = queryPath
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "RetrieveData FAILED: " + err.Error()}
 	}
@@ -45,7 +46,7 @@ func RetrieveAllDataInBucket(apiKey, bucketID, queryPath string) map[string]inte
 	nReq.QueryPath = queryPath
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 30*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "RetrieveAllDataInBucket FAILED: " + err.Error()}
 	}
@@ -70,7 +71,7 @@ func RetrieveAllData(userID string, start, stop int64) map[string]interface{} {
 	nReq.PagingStop = stop
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "RetrieveAllData FAILED: " + err.Error()}
 	}
@@ -100,7 +101,7 @@ func RetrieveManyDataByListID(apiKey, bucketID string, listRecordID []string) ma
 	nReq.ListRecordID = listRecordID
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "RetrieveManyDataByListID FAILED: " + err.Error()}
 	}
@@ -131,7 +132,7 @@ func SaveRecord(apiKey, bucketID, recordID string, body interface{}) map[string]
 	nReq.Body = body
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "SaveRecord FAILED: " + err.Error()}
 	}
@@ -157,7 +158,7 @@ func SaveRecordValidator(apiKey, bucketID, recordID string, body interface{}) ma
 	nReq.Body = body
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "SaveRecordValidator FAILED: " + err.Error()}
 	}
@@ -183,7 +184,7 @@ func UpdateRecordValidator(apiKey, bucketID, recordID string, body interface{}) 
 	nReq.Body = body
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "UpdateRecordValidator FAILED: " + err.Error()}
 	}
@@ -208,7 +209,7 @@ func DeleteRecord(apiKey, bucketID, recordID string) map[string]interface{} {
 	nReq.RecordID = recordID
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "DeleteRecord FAILED: " + err.Error()}
 	}
@@ -233,7 +234,7 @@ func DeleteManyRecord(apiKey, bucketID string, listRecordID []string) map[string
 	nReq.ListRecordID = listRecordID
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "DeleteManyRecord FAILED: " + err.Error()}
 	}
@@ -265,7 +266,7 @@ func UpdateAFieldRecord(apiKey, bucketID, recordID, queryPath string, body inter
 	nReq.Body = body
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "UpdateAFieldRecord FAILED: " + err.Error()}
 	}
@@ -291,7 +292,7 @@ func UpdateRecord(apiKey, bucketID, recordID string, body interface{}) map[strin
 	nReq.Body = body
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "UpdateRecord FAILED: " + err.Error()}
 	}
@@ -317,7 +318,7 @@ func UpdateSomeFieldRecord(apiKey, bucketID, recordID string, body interface{}) 
 	nReq.Body = body
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "UpdateSomeFieldRecord FAILED: " + err.Error()}
 	}
@@ -344,7 +345,7 @@ func UpdateManyRecords(apiKey, bucketID string, listRecordID []string, fieldUpda
 	nReq.ValueUpdate = valueUpdate
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "UpdateManyRecord FAILED: " + err.Error()}
 	}
@@ -371,7 +372,7 @@ func NatsMatchData(apiKey, bucketID, fieldSort, orderSort string, body map[strin
 	nReq.OrderSort = orderSort
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "MatchData FAILED: " + err.Error()}
 	}
@@ -400,7 +401,7 @@ func NatsMatchDataWithPagging(apiKey, bucketID, fieldSort, orderSort string, pag
 	nReq.OrderSort = orderSort
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "MatchDataWithPagging FAILED: " + err.Error()}
 	}
@@ -427,7 +428,7 @@ func NatsInnerJoin(apiKey, bucketID string, page, limit int, body interface{}) m
 	nReq.Limit = limit
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "MatchDataInnerJoin FAILED: " + err.Error()}
 	}
@@ -451,7 +452,7 @@ func NatsGetTotalInnerJoin(apiKey, bucketID string, body interface{}) map[string
 	nReq.Body = body
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "GetTotalInnerJoin FAILED: " + err.Error()}
 	}
@@ -475,7 +476,7 @@ func IncreaseGlobalID(apiKey, globalID string) map[string]interface{} {
 	nReq.Body = map[string]interface{}{"global_id": globalID}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "IncreaseGlobalID FAILED: " + err.Error()}
 	}

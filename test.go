@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/hodtien/extension-lib/global"
-	"github.com/hodtien/extension-lib/vdd"
-	"github.com/hodtien/extension-lib/vdp"
+	"github.com/hodtien/extension-lib/core/vdd"
+	"github.com/hodtien/extension-lib/core/vdp"
 	"github.com/spf13/viper"
 )
 

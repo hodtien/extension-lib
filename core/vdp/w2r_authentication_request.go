@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/hodtien/extension-lib/model"
-	"github.com/hodtien/extension-lib/global"
+	"github.com/hodtien/extension-lib/transport"
 	
 	"github.com/google/uuid"
 )
@@ -20,7 +20,7 @@ func NatsCheckUserExists(apiKey, username string) map[string]interface{} {
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Check User Exists Failed: " + err.Error()}
 	}
@@ -45,7 +45,7 @@ func NatsCheckEmailExists(apiKey, email string) map[string]interface{} {
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Check Email Exists Failed: " + err.Error()}
 	}
@@ -70,7 +70,7 @@ func NatsCheckPhoneExists(apiKey, phone string) map[string]interface{} {
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Check Phone Number Exists Failed: " + err.Error()}
 	}
@@ -95,7 +95,7 @@ func NatsUserRegister(apiKey string, dataRegister map[string]interface{}) map[st
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Register Failed: " + err.Error()}
 	}
@@ -121,7 +121,7 @@ func NatsUserLogin(apiKey, username, password string) map[string]interface{} {
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Login Failed: " + err.Error()}
 	}
@@ -145,7 +145,7 @@ func NatsGetProfile(accessToken string) map[string]interface{} {
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Get Profile Failed: " + err.Error()}
 	}
@@ -170,7 +170,7 @@ func NatsRefreshToken(apiKey, refreshToken string) map[string]interface{} {
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Refresh Token Failed: "+ err.Error()}
 	}
@@ -199,7 +199,7 @@ func NatsChangePassword(apiKey string, old, new, confirm string) map[string]inte
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Change Password Failed: " + err.Error()}
 	}
@@ -226,7 +226,7 @@ func NatsRequestResetPasswordByEmail(apiKey string, email string) map[string]int
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Request Reset Password Failed: " + err.Error()}
 	}
@@ -256,7 +256,7 @@ func NatsResetPasswordByEmail(apiKey string, email, verifyCode, newPass, confirm
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Reset Password Failed: " + err.Error()}
 	}
@@ -283,7 +283,7 @@ func NatsRequestResetPasswordByPhone(apiKey string, phone string) map[string]int
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Request Reset Password Failed: " + err.Error()}
 	}
@@ -313,7 +313,7 @@ func NatsResetPasswordByPhone(apiKey string, phone, verifyCode, newPass, confirm
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Reset Password Failed: " + err.Error()}
 	}
@@ -340,7 +340,7 @@ func NatsGetUserByListID(apiKey string, listID interface{}) map[string]interface
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Get List User Failed: " + err.Error()}
 	}
@@ -367,7 +367,7 @@ func GetUserByPhoneOrEmail(apiKey, field, value string) map[string]interface{} {
 	}
 
 	payload, _ := json.Marshal(nReq)
-	msg, err := global.Nc.Request(subj, payload, 15*time.Second)
+	msg, err := transport.Nc.Request(subj, payload, 15*time.Second)
 	if err != nil {
 		return map[string]interface{}{"code": "10", "message": "Get User Failed: " + err.Error()}
 	}

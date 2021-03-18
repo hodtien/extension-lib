@@ -4,16 +4,15 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/hodtien/extension-lib/global"
-	"github.com/hodtien/extension-lib/httpclient"
+	"github.com/hodtien/extension-lib/transport"
 )
 
 // CreateRecord - CreateRecord
 func CreateRecord(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
-	url := global.Domain + "/api/report/v1/secure/record/create/" + bucketID
+	url := transport.Domain + "/api/report/v1/secure/record/create/" + bucketID
 	apiKey = "Bearer " + apiKey
 
-	resp, err := httpclient.MakeHTTPPutRequest(ctx, url, []string{"Authorization"}, []string{apiKey}, bodyRequest)
+	resp, err := transport.MakeHTTPPutRequest(ctx, url, []string{"Authorization"}, []string{apiKey}, bodyRequest)
 	if err != nil {
 		return map[string]interface{}{"code": "-1", "message": "Create VDR Record Failed: " + err.Error()}
 	}
@@ -37,10 +36,10 @@ func CreateRecord(ctx context.Context, apiKey, bucketID string, bodyRequest []by
 
 // DataIncrement - DataIncrement
 func DataIncrement(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
-	url := global.Domain + "/api/report/v1/secure/record/data/increment/" + bucketID
+	url := transport.Domain + "/api/report/v1/secure/record/data/increment/" + bucketID
 	apiKey = "Bearer " + apiKey
 
-	resp, err := httpclient.MakeHTTPPostRequest(ctx, url, []string{"Authorization"}, []string{apiKey}, bodyRequest)
+	resp, err := transport.MakeHTTPPostRequest(ctx, url, []string{"Authorization"}, []string{apiKey}, bodyRequest)
 	if err != nil {
 		return map[string]interface{}{"code": "-1", "message": "Data Increment Failed: " + err.Error()}
 	}
@@ -64,10 +63,10 @@ func DataIncrement(ctx context.Context, apiKey, bucketID string, bodyRequest []b
 
 // DataDecrement - DataDecrement
 func DataDecrement(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
-	url := global.Domain + "/api/report/v1/secure/record/data/decrement/" + bucketID
+	url := transport.Domain + "/api/report/v1/secure/record/data/decrement/" + bucketID
 	apiKey = "Bearer " + apiKey
 
-	resp, err := httpclient.MakeHTTPPostRequest(ctx, url, []string{"Authorization"}, []string{apiKey}, bodyRequest)
+	resp, err := transport.MakeHTTPPostRequest(ctx, url, []string{"Authorization"}, []string{apiKey}, bodyRequest)
 	if err != nil {
 		return map[string]interface{}{"code": "-1", "message": "Data Decrement Failed: " + err.Error()}
 	}
@@ -91,10 +90,10 @@ func DataDecrement(ctx context.Context, apiKey, bucketID string, bodyRequest []b
 
 // RetrieveStatistics - RetrieveStatistics
 func RetrieveStatistics(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
-	url := global.Domain + "/api/report/v1/secure/statistics/retrieve/" + bucketID
+	url := transport.Domain + "/api/report/v1/secure/statistics/retrieve/" + bucketID
 	apiKey = "Bearer " + apiKey
 
-	resp, err := httpclient.MakeHTTPPostRequest(ctx, url, []string{"Authorization"}, []string{apiKey}, bodyRequest)
+	resp, err := transport.MakeHTTPPostRequest(ctx, url, []string{"Authorization"}, []string{apiKey}, bodyRequest)
 	if err != nil {
 		return map[string]interface{}{"code": "-1", "message": "Retrieve Statistics Failed: " + err.Error()}
 	}
