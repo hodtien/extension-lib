@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/hodtien/extension-lib/model"
-	"github.com/hodtien/extension-lib/transport"
-	
+	"github.com/hodtien/extension-library/model"
+	"github.com/hodtien/extension-library/transport"
+
 	"github.com/google/uuid"
 )
 
@@ -354,8 +354,8 @@ func NatsGetUserByListID(apiKey string, listID interface{}) map[string]interface
 	return resp
 }
 
-// GetUserByPhoneOrEmail - GetUserByPhoneOrEmail
-func GetUserByPhoneOrEmail(apiKey, field, value string) map[string]interface{} {
+// NatsGetUserByPhoneOrEmail - NatsGetUserByPhoneOrEmail
+func NatsGetUserByPhoneOrEmail(apiKey, field, value string) map[string]interface{} {
 	subj := "vdp_request.app_user_management.get_user_by_phone_and_email"
 
 	nReq := map[string]interface{}{

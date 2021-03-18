@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hodtien/extension-lib/global"
+	"github.com/hodtien/extension-library/transport"
 
 	"github.com/google/uuid"
 )
 
-// SendEmailDefault - SendEmailDefault
-func SendEmailDefault(to []string, subject, body string) int {
+// NatsSendEmailDefault - NatsSendEmailDefault
+func NatsSendEmailDefault(to []string, subject, body string) int {
 	// initial
 	requestBody, _ := json.Marshal(
 		map[string]interface{}{
@@ -24,7 +24,7 @@ func SendEmailDefault(to []string, subject, body string) int {
 		})
 
 	emailSubject := "vcm_email_request.send_email_default"
-	msg, err := global.Nc.Request(emailSubject, requestBody, 15*time.Second)
+	msg, err := transport.Nc.Request(emailSubject, requestBody, 15*time.Second)
 	if err != nil {
 		fmt.Println("Request VCM Send Email Error:", err)
 		return -1
@@ -40,8 +40,8 @@ func SendEmailDefault(to []string, subject, body string) int {
 	return 0
 }
 
-// PushIOSNotification - PushIOSNotification
-func PushIOSNotification(apiKey, to, title, body string) int {
+// NatsPushIOSNotification - NatsPushIOSNotification
+func NatsPushIOSNotification(apiKey, to, title, body string) int {
 	// initial
 	requestBody, _ := json.Marshal(
 		map[string]interface{}{
@@ -58,7 +58,7 @@ func PushIOSNotification(apiKey, to, title, body string) int {
 	)
 
 	subject := "vcm_ios_request.push_notification"
-	msg, err := global.Nc.Request(subject, requestBody, 15*time.Second)
+	msg, err := transport.Nc.Request(subject, requestBody, 15*time.Second)
 	if err != nil {
 		fmt.Println("Request VCM Push IOS Notification Error:", err)
 		return -1
@@ -74,8 +74,8 @@ func PushIOSNotification(apiKey, to, title, body string) int {
 	return 0
 }
 
-// PushAndroidNotification - PushAndroidNotification
-func PushAndroidNotification(apiKey, to, title, body string, data interface{}) int {
+// NatsPushAndroidNotification - NatsPushAndroidNotification
+func NatsPushAndroidNotification(apiKey, to, title, body string, data interface{}) int {
 	// initial
 	requestBody, _ := json.Marshal(
 		map[string]interface{}{
@@ -93,7 +93,7 @@ func PushAndroidNotification(apiKey, to, title, body string, data interface{}) i
 	)
 
 	subject := "vcm_android_request.push_notification"
-	msg, err := global.Nc.Request(subject, requestBody, 15*time.Second)
+	msg, err := transport.Nc.Request(subject, requestBody, 15*time.Second)
 	if err != nil {
 		fmt.Println("Request VCM Push Android Notification Error:", err)
 		return -1

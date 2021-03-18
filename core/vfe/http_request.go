@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"mime/multipart"
 
-	"github.com/hodtien/extension-lib/transport"
+	"github.com/hodtien/extension-library/transport"
 )
 
-func HTTPUploadFiles(ctx context.Context, apiKey, bucketID string, multiPartWriter *multipart.Writer, byteBuff bytes.Buffer) map[string]interface{} {
+func HttpUploadFiles(ctx context.Context, apiKey, bucketID string, multiPartWriter *multipart.Writer, byteBuff bytes.Buffer) map[string]interface{} {
 	apiKey = "Bearer " + apiKey
 	url := transport.Domain + "/api/vnpt-filestorage-engine/v1/minio/upload/" + bucketID
 

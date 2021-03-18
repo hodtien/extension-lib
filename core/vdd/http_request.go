@@ -4,11 +4,11 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/hodtien/extension-lib/transport"
+	"github.com/hodtien/extension-library/transport"
 )
 
-// MatchData - MatchData
-func MatchData(ctx context.Context, apiKey, bucketID string, bodyBytes []byte) map[string]interface{} {
+// HttpMatchData - HttpMatchData
+func HttpMatchData(ctx context.Context, apiKey, bucketID string, bodyBytes []byte) map[string]interface{} {
 	apiKey = "Bearer " + apiKey
 
 	url := transport.Domain + "/api/core/v1/data/all_in_bucket/match/" + bucketID
@@ -34,8 +34,8 @@ func MatchData(ctx context.Context, apiKey, bucketID string, bodyBytes []byte) m
 	return body
 }
 
-// MatchDataWithPaggingAndLogic - MatchDataWithPaggingAndLogic
-func MatchDataWithPaggingAndLogic(ctx context.Context, apiKey, bucketID, page, limit string, bodyBytes []byte, getTotal bool) map[string]interface{} {
+// HttpMatchDataWithPaggingAndLogic - HttpMatchDataWithPaggingAndLogic
+func HttpMatchDataWithPaggingAndLogic(ctx context.Context, apiKey, bucketID, page, limit string, bodyBytes []byte, getTotal bool) map[string]interface{} {
 	apiKey = "Bearer " + apiKey
 
 	url := transport.Domain + "/api/core/v1/data/all_in_bucket/match_with_pagging/logic/" + bucketID

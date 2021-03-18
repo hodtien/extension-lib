@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/hodtien/extension-lib/global"
-	"github.com/hodtien/extension-lib/core/vdd"
-	"github.com/hodtien/extension-lib/core/vdp"
+	"github.com/hodtien/extension-library/core/vdd"
+	"github.com/hodtien/extension-library/core/vdp"
+	"github.com/hodtien/extension-library/transport"
 	"github.com/spf13/viper"
 )
 
@@ -16,7 +16,7 @@ func main() {
 		panic(err)
 	}
 
-	global.Constructor(
+	transport.Constructor(
 		viper.GetString("nats.url"),
 		viper.GetString("domain"),
 	)
@@ -25,7 +25,7 @@ func main() {
 
 	// VDD test
 	vddApikey := viper.GetString("api_key.vdd")
-	resp = vdd.RetrieveAllDataInBucket(vddApikey, "location_site", "")
+	resp = vdd.NatsRetrieveAllDataInBucket(vddApikey, "location_site", "")
 
 	// VDD test
 	vdpApikey := viper.GetString("api_key.vdp")

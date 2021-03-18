@@ -3,15 +3,15 @@ package vdd
 import (
 	"encoding/json"
 	"time"
-	
-	"github.com/hodtien/extension-lib/transport"
-	"github.com/hodtien/extension-lib/model"
+
+	"github.com/hodtien/extension-library/model"
+	"github.com/hodtien/extension-library/transport"
 
 	"github.com/google/uuid"
 )
 
-// RetrieveData - RetrieveData
-func RetrieveData(apiKey, bucketID, recordID, queryPath string) map[string]interface{} {
+// NatsRetrieveData - NatsRetrieveData
+func NatsRetrieveData(apiKey, bucketID, recordID, queryPath string) map[string]interface{} {
 	subj := "vdd_request.RetrieveData"
 
 	nReq := new(model.NATSRequest)
@@ -36,8 +36,8 @@ func RetrieveData(apiKey, bucketID, recordID, queryPath string) map[string]inter
 	return resp
 }
 
-// RetrieveAllDataInBucket - RetrieveAllDataInBucket
-func RetrieveAllDataInBucket(apiKey, bucketID, queryPath string) map[string]interface{} {
+// NatsRetrieveAllDataInBucket - NatsRetrieveAllDataInBucket
+func NatsRetrieveAllDataInBucket(apiKey, bucketID, queryPath string) map[string]interface{} {
 	subj := "vdd_request.RetrieveAllDataInBucket"
 	nReq := new(model.NATSRequest)
 	nReq.RequestID = uuid.New().String()
@@ -60,13 +60,13 @@ func RetrieveAllDataInBucket(apiKey, bucketID, queryPath string) map[string]inte
 	return resp
 }
 
-// RetrieveAllData - RetrieveAllData
-func RetrieveAllData(userID string, start, stop int64) map[string]interface{} {
+// NatsRetrieveAllData - NatsRetrieveAllData
+func NatsRetrieveAllData(apiKey string, start, stop int64) map[string]interface{} {
 	subj := "vdd_request.RetrieveAllData"
 
 	nReq := new(model.NATSRequest)
 	nReq.RequestID = uuid.New().String()
-	nReq.UserID = userID
+	nReq.APIKey = apiKey
 	nReq.PagingStart = start
 	nReq.PagingStop = stop
 
@@ -90,8 +90,8 @@ func RetrieveAllData(userID string, start, stop int64) map[string]interface{} {
 	return resp
 }
 
-// RetrieveManyDataByListID - RetrieveManyDataByListID
-func RetrieveManyDataByListID(apiKey, bucketID string, listRecordID []string) map[string]interface{} {
+// NatsRetrieveManyDataByListID - NatsRetrieveManyDataByListID
+func NatsRetrieveManyDataByListID(apiKey, bucketID string, listRecordID []string) map[string]interface{} {
 	subj := "vdd_request.RetrieveManyDataByListID"
 
 	nReq := new(model.NATSRequest)
@@ -120,8 +120,8 @@ func RetrieveManyDataByListID(apiKey, bucketID string, listRecordID []string) ma
 	return resp
 }
 
-// SaveRecord - SaveRecord
-func SaveRecord(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
+// NatsSaveRecord - NatsSaveRecord
+func NatsSaveRecord(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
 	subj := "vdd_request.SaveRecord"
 
 	nReq := new(model.NATSRequest)
@@ -146,8 +146,8 @@ func SaveRecord(apiKey, bucketID, recordID string, body interface{}) map[string]
 	return resp
 }
 
-// SaveRecordValidator - SaveRecordValidator
-func SaveRecordValidator(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
+// NatsSaveRecordValidator - NatsSaveRecordValidator
+func NatsSaveRecordValidator(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
 	subj := "vdd_request.SaveRecordValidator"
 
 	nReq := new(model.NATSRequest)
@@ -172,8 +172,8 @@ func SaveRecordValidator(apiKey, bucketID, recordID string, body interface{}) ma
 	return resp
 }
 
-// UpdateRecordValidator - UpdateRecordValidator
-func UpdateRecordValidator(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
+// NatsUpdateRecordValidator - NatsUpdateRecordValidator
+func NatsUpdateRecordValidator(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
 	subj := "vdd_request.UpdateRecordValidator"
 
 	nReq := new(model.NATSRequest)
@@ -198,8 +198,8 @@ func UpdateRecordValidator(apiKey, bucketID, recordID string, body interface{}) 
 	return resp
 }
 
-// DeleteRecord - DeleteRecord
-func DeleteRecord(apiKey, bucketID, recordID string) map[string]interface{} {
+// NatsDeleteRecord - NatsDeleteRecord
+func NatsDeleteRecord(apiKey, bucketID, recordID string) map[string]interface{} {
 	subj := "vdd_request.DeleteRecord"
 
 	nReq := new(model.NATSRequest)
@@ -223,8 +223,8 @@ func DeleteRecord(apiKey, bucketID, recordID string) map[string]interface{} {
 	return resp
 }
 
-// DeleteManyRecord - DeleteManyRecord
-func DeleteManyRecord(apiKey, bucketID string, listRecordID []string) map[string]interface{} {
+// NatsDeleteManyRecord - NatsDeleteManyRecord
+func NatsDeleteManyRecord(apiKey, bucketID string, listRecordID []string) map[string]interface{} {
 	subj := "vdd_request.DeleteManyRecord"
 
 	nReq := new(model.NATSRequest)
@@ -253,8 +253,8 @@ func DeleteManyRecord(apiKey, bucketID string, listRecordID []string) map[string
 	return resp
 }
 
-// UpdateAFieldRecord - UpdateAFieldRecord
-func UpdateAFieldRecord(apiKey, bucketID, recordID, queryPath string, body interface{}) map[string]interface{} {
+// NatsUpdateAFieldRecord - NatsUpdateAFieldRecord
+func NatsUpdateAFieldRecord(apiKey, bucketID, recordID, queryPath string, body interface{}) map[string]interface{} {
 	subj := "vdd_request.UpdateAFieldRecord"
 
 	nReq := new(model.NATSRequest)
@@ -280,8 +280,8 @@ func UpdateAFieldRecord(apiKey, bucketID, recordID, queryPath string, body inter
 	return resp
 }
 
-// UpdateRecord - UpdateRecord
-func UpdateRecord(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
+// NatsUpdateRecord - NatsUpdateRecord
+func NatsUpdateRecord(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
 	subj := "vdd_request.UpdateRecord"
 
 	nReq := new(model.NATSRequest)
@@ -306,8 +306,8 @@ func UpdateRecord(apiKey, bucketID, recordID string, body interface{}) map[strin
 	return resp
 }
 
-// UpdateSomeFieldRecord - UpdateSomeFieldRecord
-func UpdateSomeFieldRecord(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
+// NatsUpdateSomeFieldRecord - NatsUpdateSomeFieldRecord
+func NatsUpdateSomeFieldRecord(apiKey, bucketID, recordID string, body interface{}) map[string]interface{} {
 	subj := "vdd_request.UpdateSomeFieldRecord"
 
 	nReq := new(model.NATSRequest)
@@ -332,8 +332,8 @@ func UpdateSomeFieldRecord(apiKey, bucketID, recordID string, body interface{}) 
 	return resp
 }
 
-// UpdateManyRecords - UpdateManyRecords
-func UpdateManyRecords(apiKey, bucketID string, listRecordID []string, fieldUpdate, valueUpdate string) map[string]interface{} {
+// NatsUpdateManyRecords - NatsUpdateManyRecords
+func NatsUpdateManyRecords(apiKey, bucketID string, listRecordID []string, fieldUpdate, valueUpdate string) map[string]interface{} {
 	subj := "vdd_request.UpdateManyRecord"
 
 	nReq := new(model.NATSRequest)
@@ -466,8 +466,8 @@ func NatsGetTotalInnerJoin(apiKey, bucketID string, body interface{}) map[string
 	return resp
 }
 
-// IncreaseGlobalID - IncreaseGlobalID
-func IncreaseGlobalID(apiKey, globalID string) map[string]interface{} {
+// NatsIncreaseGlobalID - NatsIncreaseGlobalID
+func NatsIncreaseGlobalID(apiKey, globalID string) map[string]interface{} {
 	subj := "vdd_request.global_id_management.increase"
 
 	nReq := new(model.NATSRequest)

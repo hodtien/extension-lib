@@ -1,4 +1,4 @@
-module github.com/hodtien/extension-lib
+module github.com/hodtien/extension-library
 
 go 1.16
 

@@ -4,11 +4,11 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/hodtien/extension-lib/transport"
+	"github.com/hodtien/extension-library/transport"
 )
 
-// CreateRecord - CreateRecord
-func CreateRecord(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
+// HttpCreateRecord - HttpCreateRecord
+func HttpCreateRecord(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
 	url := transport.Domain + "/api/report/v1/secure/record/create/" + bucketID
 	apiKey = "Bearer " + apiKey
 
@@ -34,8 +34,8 @@ func CreateRecord(ctx context.Context, apiKey, bucketID string, bodyRequest []by
 	return body
 }
 
-// DataIncrement - DataIncrement
-func DataIncrement(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
+// HttpDataIncrement - HttpDataIncrement
+func HttpDataIncrement(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
 	url := transport.Domain + "/api/report/v1/secure/record/data/increment/" + bucketID
 	apiKey = "Bearer " + apiKey
 
@@ -61,8 +61,8 @@ func DataIncrement(ctx context.Context, apiKey, bucketID string, bodyRequest []b
 	return body
 }
 
-// DataDecrement - DataDecrement
-func DataDecrement(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
+// HttpDataDecrement - HttpDataDecrement
+func HttpDataDecrement(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
 	url := transport.Domain + "/api/report/v1/secure/record/data/decrement/" + bucketID
 	apiKey = "Bearer " + apiKey
 
@@ -84,12 +84,12 @@ func DataDecrement(ctx context.Context, apiKey, bucketID string, bodyRequest []b
 			body["code"] = "3"
 		}
 	}
-	
+
 	return body
 }
 
-// RetrieveStatistics - RetrieveStatistics
-func RetrieveStatistics(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
+// HttpRetrieveStatistics - HttpRetrieveStatistics
+func HttpRetrieveStatistics(ctx context.Context, apiKey, bucketID string, bodyRequest []byte) map[string]interface{} {
 	url := transport.Domain + "/api/report/v1/secure/statistics/retrieve/" + bucketID
 	apiKey = "Bearer " + apiKey
 
@@ -111,6 +111,6 @@ func RetrieveStatistics(ctx context.Context, apiKey, bucketID string, bodyReques
 			body["code"] = "3"
 		}
 	}
-	
+
 	return body
 }

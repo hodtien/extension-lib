@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hodtien/extension-lib/transport"
+	"github.com/hodtien/extension-library/transport"
 )
 
-// GetAllUsersByOneCondition - GetAllUsersByOneCondition
-func GetAllUsersByOneCondition(ctx context.Context, apiKey, fieldKey, fieldValue string) map[string]interface{} {
+// HttpGetAllUsersByOneCondition - HttpGetAllUsersByOneCondition
+func HttpGetAllUsersByOneCondition(ctx context.Context, apiKey, fieldKey, fieldValue string) map[string]interface{} {
 	url := "/api/permission/v1/authentication/private/user/list"
 	url = transport.Domain + url + "?field_key=" + fieldKey + "&field_value=" + fieldValue
 
@@ -33,8 +33,8 @@ func GetAllUsersByOneCondition(ctx context.Context, apiKey, fieldKey, fieldValue
 	return body
 }
 
-// GetUserProfileByUserID - GetUserProfileByUserID
-func GetUserProfileByUserID(ctx context.Context, apiKey, userID string) map[string]interface{} {
+// HttpGetUserProfileByUserID - HttpGetUserProfileByUserID
+func HttpGetUserProfileByUserID(ctx context.Context, apiKey, userID string) map[string]interface{} {
 	urlGetUserProfile := "/api/permission/v1/authentication/user/profile/"
 
 	url := transport.Domain + urlGetUserProfile + userID
@@ -67,8 +67,8 @@ func GetUserProfileByUserID(ctx context.Context, apiKey, userID string) map[stri
 	return body
 }
 
-// UpdateUserProfileByUserID - UpdateUserProfileByUserID
-func UpdateUserProfileByUserID(ctx context.Context, apiKey, userID string, bodyUpdate interface{}) map[string]interface{} {
+// HttpUpdateUserProfileByUserID - HttpUpdateUserProfileByUserID
+func HttpUpdateUserProfileByUserID(ctx context.Context, apiKey, userID string, bodyUpdate interface{}) map[string]interface{} {
 	url := transport.Domain + "/api/permission/v1/authentication/user/update/" + userID
 
 	apiKey = "Bearer " + apiKey
@@ -88,8 +88,8 @@ func UpdateUserProfileByUserID(ctx context.Context, apiKey, userID string, bodyU
 	return bodyResp
 }
 
-// GetAllUserByOneCondition - GetAllUserByOneCondition
-func GetAllUserByOneCondition(ctx context.Context, apiKey, role string) map[string]interface{} {
+// HttpGetAllUserByOneCondition - HttpGetAllUserByOneCondition
+func HttpGetAllUserByOneCondition(ctx context.Context, apiKey, role string) map[string]interface{} {
 	// Initial
 	url := transport.Domain + "/api/permission/v1/authentication/private/user/list?field_key=role&field_value=" + role
 	apiKey = "Bearer " + apiKey
@@ -108,8 +108,8 @@ func GetAllUserByOneCondition(ctx context.Context, apiKey, role string) map[stri
 	return bodyResp
 }
 
-// GetAllUser - GetAllUser
-func GetAllUser(ctx context.Context, apiKey string) map[string]interface{} {
+// HttpGetAllUser - HttpGetAllUser
+func HttpGetAllUser(ctx context.Context, apiKey string) map[string]interface{} {
 	// Initial
 	url := transport.Domain + "/api/permission/v1/authentication/user/all"
 	apiKey = "Bearer " + apiKey
@@ -127,12 +127,12 @@ func GetAllUser(ctx context.Context, apiKey string) map[string]interface{} {
 		fmt.Println(err)
 		return map[string]interface{}{"code": "10", "message": "Get All User Failed: " + err.Error()}
 	}
-	
+
 	return bodyResp
 }
 
-// GetAllUserByIDList - GetAllUserByIDList
-func GetAllUserByIDList(ctx context.Context, apiKey string, bodyBytes []byte) map[string]interface{} {
+// HttpGetAllUserByIDList - HttpGetAllUserByIDList
+func HttpGetAllUserByIDList(ctx context.Context, apiKey string, bodyBytes []byte) map[string]interface{} {
 	// Initial
 	url := transport.Domain + "/api/permission/v1/authentication/user/retrieve_many"
 	apiKey = "Bearer " + apiKey
